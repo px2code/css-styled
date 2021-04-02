@@ -38,7 +38,9 @@ export function replaceStyle(className: string, css: string, options: Partial<In
     });
 }
 export function injectStyle(className: string, css: string, options: Partial<InjectOptions>, shadowRoot?: Node) {
-    const style = document.createElement("style");
+    const iframe =  document.querySelector("iframe[px-code-frame]") as HTMLIFrameElement;
+    const contentDocument = iframe.contentDocument;
+    const style = contentDocument.createElement("style");
 
     style.setAttribute("type", "text/css");
     style.setAttribute("data-styled-id", className);
@@ -48,6 +50,6 @@ export function injectStyle(className: string, css: string, options: Partial<Inj
     }
     style.innerHTML = replaceStyle(className, css, options);
 
-    (shadowRoot || document.head || document.body).appendChild(style);
+    (shadowRoot || contentDocument.head || contentDocument.body).appendChild(style);
     return style;
 }
