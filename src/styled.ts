@@ -5,7 +5,7 @@ import { StyledInjector, InjectOptions } from "./types";
  * Create an styled object that can be defined and inserted into the css.
  * @param - css styles
  */
-function styled(css: string): StyledInjector {
+function styled(css: string, iframeSelector = "iframe[px-code-frame]"): StyledInjector {
     const injectClassName = "rCS" + getHash(css);
     let injectCount = 0;
     let injectElement!: HTMLStyleElement;
@@ -18,7 +18,7 @@ function styled(css: string): StyledInjector {
             let styleElement: HTMLStyleElement;
 
             if (shadowRoot || firstMount) {
-                styleElement = injectStyle(injectClassName, css, options, shadowRoot);
+                styleElement = injectStyle(injectClassName, css, options, shadowRoot, iframeSelector);
             }
             if (firstMount) {
                 injectElement = styleElement;

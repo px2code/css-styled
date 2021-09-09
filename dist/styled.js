@@ -163,8 +163,8 @@ version: 1.0.0
       }).join(", ") + " {";
     });
   }
-  function injectStyle(className, css, options, shadowRoot) {
-    var iframe = document.querySelector("iframe[px-code-frame]");
+  function injectStyle(className, css, options, shadowRoot, iframeSelector) {
+    var iframe = document.querySelector(iframeSelector);
     var contentDocument = iframe.contentDocument;
     var style = contentDocument.createElement("style");
     style.setAttribute("type", "text/css");
@@ -184,7 +184,11 @@ version: 1.0.0
    * @param - css styles
    */
 
-  function styled(css) {
+  function styled(css, iframeSelector) {
+    if (iframeSelector === void 0) {
+      iframeSelector = "iframe[px-code-frame]";
+    }
+
     var injectClassName = "rCS" + getHash(css);
     var injectCount = 0;
     var injectElement;
@@ -200,7 +204,7 @@ version: 1.0.0
         var styleElement;
 
         if (shadowRoot || firstMount) {
-          styleElement = injectStyle(injectClassName, css, options, shadowRoot);
+          styleElement = injectStyle(injectClassName, css, options, shadowRoot, iframeSelector);
         }
 
         if (firstMount) {

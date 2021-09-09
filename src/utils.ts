@@ -37,8 +37,8 @@ export function replaceStyle(className: string, css: string, options: Partial<In
         }).join(", ") + " {";
     });
 }
-export function injectStyle(className: string, css: string, options: Partial<InjectOptions>, shadowRoot?: Node) {
-    const iframe =  document.querySelector("iframe[px-code-frame]") as HTMLIFrameElement;
+export function injectStyle(className: string, css: string, options: Partial<InjectOptions>, shadowRoot: Node, iframeSelector: string) {
+    const iframe =  document.querySelector(iframeSelector) as HTMLIFrameElement;
     const contentDocument = iframe.contentDocument;
     const style = contentDocument.createElement("style");
 
