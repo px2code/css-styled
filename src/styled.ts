@@ -5,7 +5,7 @@ import { StyledInjector, InjectOptions } from "./types";
  * Create an styled object that can be defined and inserted into the css.
  * @param - css styles
  */
-function styled(css: string, iframeSelector = "iframe[px-code-frame]"): StyledInjector {
+function styled(css: string, iframeSelector): StyledInjector {
     const injectClassName = "rCS" + getHash(css);
     let injectCount = 0;
     let injectElement!: HTMLStyleElement;

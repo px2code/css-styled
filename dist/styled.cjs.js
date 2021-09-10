@@ -86,10 +86,6 @@ function injectStyle(className, css, options, shadowRoot, iframeSelector) {
  */
 
 function styled(css, iframeSelector) {
-  if (iframeSelector === void 0) {
-    iframeSelector = "iframe[px-code-frame]";
-  }
-
   var injectClassName = "rCS" + getHash(css);
   var injectCount = 0;
   var injectElement;
