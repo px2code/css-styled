@@ -63,8 +63,9 @@ function replaceStyle(className, css, options) {
   });
 }
 function injectStyle(className, css, options, shadowRoot, iframeSelector) {
-  var iframe = document.querySelector(iframeSelector);
-  var contentDocument = iframe.contentDocument;
+  var iframe = iframeSelector ? document.querySelector(iframeSelector) : null;
+  var contentDocument = iframe ? iframe.contentDocument : document;
+  console.log(contentDocument);
   var style = contentDocument.createElement("style");
   style.setAttribute("type", "text/css");
   style.setAttribute("data-styled-id", className);

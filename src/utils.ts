@@ -5,6 +5,7 @@ import { InjectOptions } from "./types";
 export function getHash(str: string) {
     return stringHash(str).toString(36);
 }
+
 export function getShadowRoot(parentElement: HTMLElement | SVGElement) {
     if (parentElement && parentElement.getRootNode) {
         const rootNode = parentElement.getRootNode();
@@ -15,6 +16,7 @@ export function getShadowRoot(parentElement: HTMLElement | SVGElement) {
     }
     return;
 }
+
 export function replaceStyle(className: string, css: string, options: Partial<InjectOptions>) {
     if (options.original) {
         return css;
@@ -37,9 +39,11 @@ export function replaceStyle(className: string, css: string, options: Partial<In
         }).join(", ") + " {";
     });
 }
+
 export function injectStyle(className: string, css: string, options: Partial<InjectOptions>, shadowRoot: Node, iframeSelector: string) {
-    const iframe =  document.querySelector(iframeSelector) as HTMLIFrameElement;
-    const contentDocument = iframe.contentDocument;
+    const iframe = iframeSelector ? document.querySelector(iframeSelector) as HTMLIFrameElement : null;
+    const contentDocument = iframe ? iframe.contentDocument : document;
+    console.log(contentDocument);
     const style = contentDocument.createElement("style");
 
     style.setAttribute("type", "text/css");
