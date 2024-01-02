@@ -42,7 +42,6 @@
         "print-coveralls": "^1.2.2",
         "print-sizes": "^0.1.0",
         "pvu": "^0.4.1",
-        "ts-jest": "^26.3.0",
         "tslint": "^5.20.1",
         "typescript": "^3.7.4"
     },
